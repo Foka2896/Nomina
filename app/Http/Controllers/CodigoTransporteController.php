@@ -24,7 +24,7 @@ class CodigoTransporteController extends Controller
             ->orderBy('id', 'asc')
             ->paginate(10);
         $codigoTransporte = CodigoTransporte::paginate(10);
-        return view('camov.index', compact('texto', 'transporte','codigoTransporte'));
+        return view('camov.index', compact('texto', 'transporte', 'codigoTransporte'));
     }
 
     /**
@@ -99,9 +99,5 @@ class CodigoTransporteController extends Controller
         Excel::import(new CodigoTransporteImport, $file);
         return redirect()->route('camov.index')->with('status', 'Se cargo correctamente');
     }
-
-    public function import()
-    {
-        return view("route{{('camov.index)}}", 'message', 'importación de archivo completa');
-    }
+    
 }

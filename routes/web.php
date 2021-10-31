@@ -35,7 +35,10 @@ Route::resource('caja', App\Http\Controllers\CajaController::class);
 Route::resource('camov', App\Http\Controllers\CodigoTransporteController::class);
 
 Route::post('CodigoTransporte/importExcel', [App\Http\Controllers\CodigoTransporteController::class, 'importExcel'])->name('camov.importExcel');
-Route::get('CodigoTransporte/import', [App\Http\Controllers\CodigoTransporteController::class, 'import'])->name('camov.import');
+Route::get('CodigoTransporte/exportExcel', [App\Http\Controllers\CodigoTransporteController::class, 'exportExcel'])->name('camov.exportExcel');
+
+Route::resource('historial', App\Http\Controllers\HistorialController::class);
+
 
 //Auth::routes();
 

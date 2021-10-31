@@ -17,10 +17,14 @@ class CodigoTransporteImport implements ToModel
 
     public function model(array $row)
     {
-        return new CodigoTransporte([
-            'Codigo'    => $row[0],
-            'Placa'     => $row[1],
-            'Caja'      => $row[2],
-        ]);
+        if ($row[0] != "Codigo") {
+            return new CodigoTransporte([
+                'Codigo'    => $row[0],
+                'Placa'     => $row[1],
+                'Caja'      => $row[2],
+            ]);
+        } else {
+            return null;
+        }
     }
 }
