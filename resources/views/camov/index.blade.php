@@ -61,7 +61,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-
+                        <th scope="col">Fecha</th>
                         <th scope="col">Codigo</th>
                         <th scope="col">Placa</th>
                         <th scope="col">Cajas</th>
@@ -71,7 +71,7 @@
                     @foreach ($codigoTransporte as $codigoTransportes)
                     <tr>
                         <th scope="row">{{ $codigoTransportes->id }}</th>
-                        
+                        <td>{{ $codigoTransportes->Fecha }}</th>
                         <td>{{ $codigoTransportes->Codigo }}</th>
                         <td>{{ $codigoTransportes->Placa }}</th>
                         <td>{{ $codigoTransportes->Caja }}</th>

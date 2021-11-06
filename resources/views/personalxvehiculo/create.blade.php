@@ -81,6 +81,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad de cajas</label>
+                        <input type="text" class="form-control" name="cantidad" require maxlength="4">
+                    </div>
                     <div class="form-group my-2">
                         <input type="submit" class="btn btn-primary" value="Guardar">
                         <input type="reset" class="btn btn-dark" value="Cancelar">

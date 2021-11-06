@@ -98,8 +98,14 @@
                                     {{ $transporte->Codigo }},
                                     Placa: {{ $transporte->Placa }},Caja: {{ $transporte->Caja }}</option>
                             @endif
-                        </select>
                     </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad de cajas</label>
+                        <input type="text" class="form-control" name="cantidad" disabled>
+                    </div>
+
                     <div class="form-group my-2">
                         <a class="btn btn-danger" href="{{ route('personalxvehiculo.index') }}">Ir atrás</a>
                     </div>
