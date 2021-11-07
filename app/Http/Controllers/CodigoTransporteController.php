@@ -18,14 +18,14 @@ class CodigoTransporteController extends Controller
     public function index(Request $request)
     {
         $texto = trim($request->get('texto'));
-        $transporte = DB::table('codigo_transportes')->select('id','Fecha','Codigo', 'Placa', 'Caja')
+        $codigoTransporte = DB::table('codigo_transportes')->select('id','Fecha','Codigo', 'Placa', 'Caja')
             ->where('Caja', 'LIKE', '%' . $texto . '%')
             ->orwhere('Fecha', 'LIKE', '%' . $texto . '%')
-            ->orwhere('placa','LIKE', '%' . $texto . '%')
+            ->orwhere('Placa','LIKE', '%' . $texto . '%')
+            ->orwhere('Codigo', 'LIKE', '%' . $texto . "%")
             ->orderBy('id', 'asc')
             ->paginate(10);
-        $codigoTransporte = CodigoTransporte::paginate(10);
-        return view('camov.index', compact('texto', 'transporte', 'codigoTransporte'));
+        return view('camov.index', compact('texto', 'codigoTransporte'));
     }
 
     /**
@@ -101,4 +101,8 @@ class CodigoTransporteController extends Controller
         return redirect()->route('camov.index')->with('status', 'Se cargo correctamente');
     }
 
+    public function importdata(Request $request)
+    {
+        dd($request);
+    }
 }

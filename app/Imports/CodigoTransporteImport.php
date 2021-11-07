@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\CodigoTransporte;
+use App\Models\Vehiculo;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 
@@ -17,13 +18,18 @@ class CodigoTransporteImport implements ToModel
 
     public function model(array $row)
     {
-        if ($row[0] != "Codigo") {
-            return new CodigoTransporte([
+        if ($row[1] != "Codigo") {
+            $data = Vehiculo::firstOrNew(['placa' => $row[2]]);
+            $data->save();
+
+            $CodigoTransporte = CodigoTransporte::firstOrNew([
                 'Fecha'    => $row[0],
                 'Codigo'    => $row[1],
                 'Placa'     => $row[2],
                 'Caja'      => $row[3],
             ]);
+            $CodigoTransporte->save();
+            return $CodigoTransporte;
         } else {
             return null;
         }

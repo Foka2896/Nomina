@@ -5,22 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Camov</title>
 </head>
 
 <body>
     <div class="container">
         @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
         @endif
         @if (session('error'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('error') }}
-        </div>
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
         @endif
 
         &nbsp;
@@ -28,36 +30,36 @@
         <h4>Registro Camov</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{url('camov/importdata')}}" method="post" enctype="multipart/form-data">
-                    @csrf
+                <form action="{{ route('camov.index') }}" method="get">
                     <div class="form-row">
                         <div class="col-sm-4 my-1">
-                            <input type="text" class="form-control" name="texto" value="{{$texto}}">
+                            <input type="text" class="form-control" name="texto" id="TxtInput"
+                                value="{{ $texto }}">
                         </div>
                         <div class="col-auto my-2">
                             <input type="submit" class="btn btn-primary" value="Buscar">
                         </div>
-                        <div class="col-auto my-2">
-                            <a href="{{route('camov.create')}}" class="btn btn-success">Crear Registo</a>
-                            <a href="/" class="btn btn-dark">Volver</a>
-                            <a href="" class="btn btn-outline-success">
-                                <i class="fas fa-file-excel">&nbsp;&nbsp;</i>Generar Excel</a>
-                        </div>
+                    </div>
+                    <div class="col-auto my-2">
+                        <a href="{{ route('camov.create') }}" class="btn btn-success">Crear Registo</a>
+                        <a href="/" class="btn btn-dark">Volver</a>
+                        <a href="" class="btn btn-outline-success">
+                            <i class="fas fa-file-excel">&nbsp;&nbsp;</i>Generar Excel</a>
                     </div>
                 </form>
             </div>
         </div>
-        <form action="{{route('camov.importExcel')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('camov.importExcel') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if (Session::has('message'))
-            <p>{{ Session::get('message')}}</p>
+                <p>{{ Session::get('message') }}</p>
             @endif
             <input type="file" name="file">
             <button type="submit" class="btn btn-outline-secondary">Importar Camov</button>
         </form>
 
         <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="TblData">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -69,13 +71,13 @@
                 </thead>
                 <tbody>
                     @foreach ($codigoTransporte as $codigoTransportes)
-                    <tr>
-                        <th scope="row">{{ $codigoTransportes->id }}</th>
-                        <td>{{ $codigoTransportes->Fecha }}</th>
-                        <td>{{ $codigoTransportes->Codigo }}</th>
-                        <td>{{ $codigoTransportes->Placa }}</th>
-                        <td>{{ $codigoTransportes->Caja }}</th>
-                    </tr>
+                        <tr>
+                            <th scope="row">{{ $codigoTransportes->id }}</th>
+                            <td>{{ $codigoTransportes->Fecha }}</th>
+                            <td>{{ $codigoTransportes->Codigo }}</th>
+                            <td>{{ $codigoTransportes->Placa }}</th>
+                            <td>{{ $codigoTransportes->Caja }}</th>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
