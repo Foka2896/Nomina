@@ -15,6 +15,7 @@ class CreateCodigoTransportesTable extends Migration
     {
         Schema::create('codigo_transportes', function (Blueprint $table) {
             $table->id();
+            $table->date("Fecha");
             $table->string("Codigo");
             $table->string("Placa");
             $table->string("Caja");

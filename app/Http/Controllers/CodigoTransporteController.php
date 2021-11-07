@@ -18,9 +18,10 @@ class CodigoTransporteController extends Controller
     public function index(Request $request)
     {
         $texto = trim($request->get('texto'));
-        $transporte = DB::table('codigo_transportes')->select('id', 'Codigo', 'Placa', 'Caja')
+        $transporte = DB::table('codigo_transportes')->select('id','Fecha','Codigo', 'Placa', 'Caja')
             ->where('Caja', 'LIKE', '%' . $texto . '%')
-            ->orwhere('placa', '%' . $texto . '%')
+            ->orwhere('Fecha', 'LIKE', '%' . $texto . '%')
+            ->orwhere('placa','LIKE', '%' . $texto . '%')
             ->orderBy('id', 'asc')
             ->paginate(10);
         $codigoTransporte = CodigoTransporte::paginate(10);
@@ -99,5 +100,5 @@ class CodigoTransporteController extends Controller
         Excel::import(new CodigoTransporteImport, $file);
         return redirect()->route('camov.index')->with('status', 'Se cargo correctamente');
     }
-    
+
 }

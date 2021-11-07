@@ -43,6 +43,7 @@ class PersonalxvehiculoController extends Controller
         $vendedor = Personal::where("Cargo", "Vendedor")->get();
         $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
         $vehiculo = Vehiculo::get();
+        
         $caja = Caja::get();
         $transporte = DB::select('SELECT codigo_transportes.id, codigo_transportes.Codigo, codigo_transportes.Caja, vehiculos.placa as Placa FROM codigo_transportes INNER JOIN vehiculos ON codigo_transportes.Placa = vehiculos.placa WHERE codigo_transportes.id NOT IN (SELECT personalxvehiculos.transportes_Id FROM personalxvehiculos)');
         return view('personalxvehiculo.create', compact('conductor', 'vendedor', 'auxiliar', 'vehiculo','caja', 'transporte'));

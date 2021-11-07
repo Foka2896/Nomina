@@ -19,9 +19,10 @@ class CodigoTransporteImport implements ToModel
     {
         if ($row[0] != "Codigo") {
             return new CodigoTransporte([
-                'Codigo'    => $row[0],
-                'Placa'     => $row[1],
-                'Caja'      => $row[2],
+                'Fecha'    => $row[0],
+                'Codigo'    => $row[1],
+                'Placa'     => $row[2],
+                'Caja'      => $row[3],
             ]);
         } else {
             return null;

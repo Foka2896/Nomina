@@ -32,7 +32,7 @@
                     @csrf
                     <div class="form-row">
                         <div class="col-sm-4 my-1">
-                            <input type="texto" class="form-control" name="texto" value="{{$texto}}">
+                            <input type="text" class="form-control" name="texto" value="{{$texto}}">
                         </div>
                         <div class="col-auto my-2">
                             <input type="submit" class="btn btn-primary" value="Buscar">
