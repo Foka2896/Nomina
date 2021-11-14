@@ -20,7 +20,8 @@ class VehiculoController extends Controller
             ->where('Placa', 'LIKE', '%' . $texto . '%')
             ->orderBy('id', 'asc')
             ->paginate(10);
-        return view('vehiculos.index', compact('vehiculos', 'texto'));
+        $total=Vehiculo::all();
+        return view('vehiculos.index', compact('vehiculos', 'texto','total'));
     }
 
     /**
@@ -44,7 +45,7 @@ class VehiculoController extends Controller
         $vehiculo = new vehiculo();
         $vehiculo->placa = $request->get('Placa');
         $vehiculo->save();
-        
+
         return redirect()->route('vehiculo.index');
     }
 
@@ -93,6 +94,6 @@ class VehiculoController extends Controller
     {
         $vehiculo=Vehiculo::FindOrFail($id);
         $vehiculo->delete();
-        return redirect()->route('vehiculo.destroy');
+        return redirect()->route('vehiculo.index');
     }
 }

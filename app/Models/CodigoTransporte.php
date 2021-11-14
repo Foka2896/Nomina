@@ -9,6 +9,8 @@ class CodigoTransporte extends Model
 {
     use HasFactory;
 
+    protected $date = 'd.m.Y';
     protected $fillable = ['Fecha','Codigo', 'Placa', 'Caja'];
+
 
 }

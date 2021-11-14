@@ -73,11 +73,11 @@
                     <button type="button" class="btn btn-primary" onclick="crear(2,2)">Crear</button>
                     <button type="button" class="btn btn-danger" onclick="eliminar(2,2)">Eliminar</button>
                     <div class="form-group">
-                        <label for="placa">Vehiculo</label>
+                        <label for="placa">Referencia CAMOV</label>
                         <select class="form-select" aria-label="Default select example" name="vehiculo">
                             <option selected>Selecione un Transporte</option>
                             @foreach ($transporte as $transportes)
-                            <option value="{{ $transportes->id }}">Transporte: {{ $transportes->Codigo }}, Placa: {{ $transportes->Placa }},Caja: {{ $transportes->Caja }}</option>
+                            <option value="{{ $transportes->id }}"> Transporte: {{ $transportes->Codigo }}, Placa: {{ $transportes->Placa }},Caja: {{ $transportes->Caja }} </option>
                             @endforeach
                         </select>
                     </div>

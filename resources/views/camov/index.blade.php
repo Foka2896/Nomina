@@ -41,7 +41,6 @@
                         </div>
                     </div>
                     <div class="col-auto my-2">
-                        <a href="{{ route('camov.create') }}" class="btn btn-success">Crear Registo</a>
                         <a href="/" class="btn btn-dark">Volver</a>
                         <a href="" class="btn btn-outline-success">
                             <i class="fas fa-file-excel">&nbsp;&nbsp;</i>Generar Excel</a>

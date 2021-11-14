@@ -30,6 +30,7 @@ Route::get('/', function () {
 
 Route::resource('personal', App\Http\Controllers\PersonalController::class);
 Route::resource('vehiculo', App\Http\Controllers\VehiculoController::class);
+Route::get('/vehiculos', [App\Http\Controllers\VehiculoController::class,'listvehiculos'])->name('vehiculo.list');
 Route::resource('personalxvehiculo', App\Http\Controllers\PersonalxvehiculoController::class);
 Route::resource('caja', App\Http\Controllers\CajaController::class);
 Route::resource('camov', App\Http\Controllers\CodigoTransporteController::class);
@@ -38,6 +39,8 @@ Route::post('CodigoTransporte/importExcel', [App\Http\Controllers\CodigoTranspor
 Route::get('CodigoTransporte/exportExcel', [App\Http\Controllers\CodigoTransporteController::class, 'exportExcel'])->name('camov.exportExcel');
 
 Route::resource('historial', App\Http\Controllers\HistorialController::class);
+
+Route::delete('/personalxvehiculo/','/PersonalxvehiculoController@destroy')->name('destroy'); //para vista de eliminar multiple vehiculos
 
 
 //Auth::routes();

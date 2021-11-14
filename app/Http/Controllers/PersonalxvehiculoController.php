@@ -43,10 +43,10 @@ class PersonalxvehiculoController extends Controller
         $vendedor = Personal::where("Cargo", "Vendedor")->get();
         $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
         $vehiculo = Vehiculo::get();
-        
-        $caja = Caja::get();
+
+        $cantidad = Caja::get();
         $transporte = DB::select('SELECT codigo_transportes.id, codigo_transportes.Codigo, codigo_transportes.Caja, vehiculos.placa as Placa FROM codigo_transportes INNER JOIN vehiculos ON codigo_transportes.Placa = vehiculos.placa WHERE codigo_transportes.id NOT IN (SELECT personalxvehiculos.transportes_Id FROM personalxvehiculos)');
-        return view('personalxvehiculo.create', compact('conductor', 'vendedor', 'auxiliar', 'vehiculo','caja', 'transporte'));
+        return view('personalxvehiculo.create', compact('conductor', 'vendedor', 'auxiliar', 'vehiculo','cantidad', 'transporte'));
     }
 
     /**
@@ -134,9 +134,9 @@ class PersonalxvehiculoController extends Controller
         $conductor = Personal::where("Cargo", "Conductor")->get();
         $vendedor = Personal::where("Cargo", "Vendedor")->get();
         $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
-        $caja = Caja::get();
+        $cantidad = Caja::get();
 
-        return view('personalxvehiculo.show', compact('fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId'));
+        return view('personalxvehiculo.show', compact('fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId','cantidad'));
     }
 
     /**
@@ -181,9 +181,9 @@ class PersonalxvehiculoController extends Controller
         $conductor = Personal::where("Cargo", "Conductor")->get();
         $vendedor = Personal::where("Cargo", "Vendedor")->get();
         $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
-        $caja = Caja::where("cantidad")->get();
+        $cantidad = Caja::where("cantidad")->get();
 
-        return view('personalxvehiculo.edit', compact('id', 'fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'cantidad', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'transporteId'));
+        return view('personalxvehiculo.edit', compact('id', 'fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'cantidad', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'transporteId','cantidad'));
     }
 
     /**
@@ -253,11 +253,20 @@ class PersonalxvehiculoController extends Controller
      */
     public function destroy($id)
     {
+        $personalxvehiculo = personalxvehiculo::where('transportes_Id', '=', $id)->get();
+        foreach ($personalxvehiculo as $personal) {
+            $personal->delete();
+        }
+        return redirect()->route('personalxvehiculo.index');
+    }
+    /*{
         $personalxvehiculo=Personalxvehiculo::FindOrFail($id);
         $personalxvehiculo->delete();
-        $caja = Caja::FindOrFail($id);
-        $caja->Delete();
         return redirect()->route('personalxvehiculo.index');
 
+    }*/
+    public function listvehiculos ()
+    {
+        $total = Vehiculo::all();
     }
 }
