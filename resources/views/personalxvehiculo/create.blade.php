@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Crear Registro</title>
 </head>
@@ -81,11 +84,46 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="cantidad">Cantidad de cajas</label>
-                        <input type="text" class="form-control" name="cantidad" require maxlength="4">
-                    </div>
-                    <div class="form-group my-2">
+                    <br>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Selecione vehiculo y cajas manual
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre">Vehiculo</label>
+                                    <select class="form-select" aria-label="Default select example" name="vehiculo">
+                                        <option selected>Selecione una placa</option>
+                                        @foreach ($vehiculo as $vehiculos)
+                                        <option value= "{{ $vehiculos->id }}"> Placa: {{ $vehiculos-> placa}} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">Cajas</label>
+                                    <input type="text" class="form-control" name="apellido" require maxlength="50">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+                              <button type="button" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    <br>
+                    <br>
                         <input type="submit" class="btn btn-primary" value="Guardar">
                         <input type="reset" class="btn btn-dark" value="Cancelar">
                         <a class="btn btn-danger" href="{{route('personalxvehiculo.index')}}">Ir atrás</a>
@@ -111,6 +149,10 @@
             document.getElementById("auxiliar").style.display = "none";
         }
     }
+
+    $('#myModal').modal({
+  keyboard: false
+})
 </script>
 
 </html>

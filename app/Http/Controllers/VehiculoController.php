@@ -20,7 +20,7 @@ class VehiculoController extends Controller
             ->where('Placa', 'LIKE', '%' . $texto . '%')
             ->orderBy('id', 'asc')
             ->paginate(10);
-        $total=Vehiculo::all();
+        $total=$vehiculos->total();
         return view('vehiculos.index', compact('vehiculos', 'texto','total'));
     }
 

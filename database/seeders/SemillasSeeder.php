@@ -25,12 +25,14 @@ class SemillasSeeder extends Seeder
         CodigoTransporte::create([
             'Codigo' => '1234567890',
             'Placa' => 'zxc123',
-            'Caja' => 12
+            'Caja' => 12,
+            'Fecha' => '2021-05-05'
         ]);
         CodigoTransporte::create([
             'Codigo' => '9876543210',
             'Placa' => 'zxc123',
-            'Caja' => 15
+            'Caja' => 15,
+            'Fecha' => '2021-05-05'
         ]);
 
         Personal::create([
@@ -44,7 +46,7 @@ class SemillasSeeder extends Seeder
             'Apellido' => 'Riano',
             'Cargo' => 'Conductor'
         ]);
-        
+
         Personal::create([
             'Nombre' => 'Karen',
             'Apellido' => 'Fontecha',

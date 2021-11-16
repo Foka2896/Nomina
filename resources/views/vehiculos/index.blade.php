@@ -24,7 +24,7 @@
             Total de vehiculos:
         </span>
         <strong>
-            ({{$vehiculos->count()}})
+            ({{$total}})
         </strong>
     </h3>
     <div class="row">

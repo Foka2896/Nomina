@@ -135,8 +135,9 @@ class PersonalxvehiculoController extends Controller
         $vendedor = Personal::where("Cargo", "Vendedor")->get();
         $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
         $cantidad = Caja::get();
+        $vehiculo = Vehiculo::get();
 
-        return view('personalxvehiculo.show', compact('fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId','cantidad'));
+        return view('personalxvehiculo.show', compact('fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId','cantidad','vehiculo'));
     }
 
     /**
@@ -182,6 +183,7 @@ class PersonalxvehiculoController extends Controller
         $vendedor = Personal::where("Cargo", "Vendedor")->get();
         $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
         $cantidad = Caja::where("cantidad")->get();
+        $vehiculo = Vehiculo::where("placa", "=", $personalxvehiculo[0]['placa'])->get();
 
         return view('personalxvehiculo.edit', compact('id', 'fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'cantidad', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'transporteId','cantidad'));
     }
@@ -203,6 +205,7 @@ class PersonalxvehiculoController extends Controller
         $auxiliarId2 = $request->get('nombreauxiliar2') ?? 0;
         $transporte = $request->get('vehiculo') ?? 0;
         $caja = $request->get('cantidad') ?? 0;
+        $vehiculo = $request->get('vehiculo') ?? 0;
         $fecha = $request->get('fecha');
         foreach ($personalxvehiculo as $personal) {
             if ($conductorId > 0) {
