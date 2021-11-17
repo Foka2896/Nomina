@@ -24,8 +24,8 @@ class ReporteExport implements FromQuery, WithHeadings
             'Fecha De Creacion',
             'Nombre Tripulacion',
             'Cargo',
-            'Placa Vehiculo',
             'Codigo De Trasnporte',
+            'Placa Vehiculo',
             'Cajas'
         ];
     }

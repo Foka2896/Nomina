@@ -32,6 +32,7 @@ Route::resource('personal', App\Http\Controllers\PersonalController::class);
 Route::resource('vehiculo', App\Http\Controllers\VehiculoController::class);
 Route::get('/vehiculos', [App\Http\Controllers\VehiculoController::class,'listvehiculos'])->name('vehiculo.list');
 Route::resource('personalxvehiculo', App\Http\Controllers\PersonalxvehiculoController::class);
+Route::post('personalxvehiculo/temp', [App\Http\Controllers\PersonalxvehiculoController::class,'temp'])->name('personalxvehiculo.temp');
 Route::resource('caja', App\Http\Controllers\CajaController::class);
 Route::resource('camov', App\Http\Controllers\CodigoTransporteController::class);
 

@@ -5,10 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Crear Registro</title>
 </head>
 
@@ -20,7 +27,7 @@
         <h4> Creación de Vehiculo</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{route('personalxvehiculo.store')}}" method="POST">
+                <form action="{{ route('personalxvehiculo.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="date">Fecha</label>
@@ -31,16 +38,19 @@
                         <select class="form-select" aria-label="Default select example" name="nombreconductor">
                             <option selected>Selecione un conductor</option>
                             @foreach ($conductor as $conductors)
-                            <option value="{{ $conductors->id }}">{{ $conductors->Nombre }} {{ $conductors->Apellido }}</option>
+                                <option value="{{ $conductors->id }}">{{ $conductors->Nombre }}
+                                    {{ $conductors->Apellido }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group" id="conductor" style="display:none">
                         <label>Conductor 2</label>
-                        <select class="form-select" aria-label="Default select example" name="nombreconductor2" id="nombreconductor2">
+                        <select class="form-select" aria-label="Default select example" name="nombreconductor2"
+                            id="nombreconductor2">
                             <option selected>Selecione un conductor</option>
                             @foreach ($conductor as $conductors)
-                            <option value="{{ $conductors->id }}">{{ $conductors->Nombre }}  {{ $conductors->Apellido }}</option>
+                                <option value="{{ $conductors->id }}">{{ $conductors->Nombre }}
+                                    {{ $conductors->Apellido }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -51,7 +61,8 @@
                         <select class="form-select" aria-label="Default select example" name="nombrevendedor">
                             <option selected>Selecione un vendedor</option>
                             @foreach ($vendedor as $vendedors)
-                            <option value="{{ $vendedors->id }}">{{ $vendedors->Nombre }}  {{ $vendedors->Apellido }}</option>
+                                <option value="{{ $vendedors->id }}">{{ $vendedors->Nombre }}
+                                    {{ $vendedors->Apellido }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -60,16 +71,19 @@
                         <select class="form-select" aria-label="Default select example" name="nombreauxiliar">
                             <option selected>Selecione un auxiliar</option>
                             @foreach ($auxiliar as $auxiliars)
-                            <option value="{{ $auxiliars->id }}">{{ $auxiliars->Nombre }}  {{ $auxiliars->Apellido }}</option>
+                                <option value="{{ $auxiliars->id }}">{{ $auxiliars->Nombre }}
+                                    {{ $auxiliars->Apellido }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group" id="auxiliar" style="display: none;">
                         <label>Auxiliar 2</label>
-                        <select class="form-select" aria-label="Default select example" name="nombreauxiliar2" id="nombreauxiliar2">
+                        <select class="form-select" aria-label="Default select example" name="nombreauxiliar2"
+                            id="nombreauxiliar2">
                             <option selected>Selecione un auxiliar</option>
                             @foreach ($auxiliar as $auxiliars)
-                            <option value="{{ $auxiliars->id }}">{{ $auxiliars->Nombre }}  {{ $auxiliars->Apellido }}</option>
+                                <option value="{{ $auxiliars->id }}">{{ $auxiliars->Nombre }}
+                                    {{ $auxiliars->Apellido }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -80,24 +94,39 @@
                         <select class="form-select" aria-label="Default select example" name="vehiculo">
                             <option selected>Selecione un Transporte</option>
                             @foreach ($transporte as $transportes)
-                            <option value="{{ $transportes->id }}"> Transporte: {{ $transportes->Codigo }}, Placa: {{ $transportes->Placa }},Caja: {{ $transportes->Caja }} </option>
+                                <option value="{{ $transportes->id }}"> Transporte: {{ $transportes->Codigo }},
+                                    Placa: {{ $transportes->Placa }},Caja: {{ $transportes->Caja }} </option>
                             @endforeach
                         </select>
                     </div>
                     <br>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
                         Selecione vehiculo y cajas manual
-                      </button>
+                    </button>
 
-                      <!-- Modal -->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-primary" value="Guardar">
+                    <input type="reset" class="btn btn-dark" value="Cancelar">
+                    <a class="btn btn-danger" href="{{ route('personalxvehiculo.index') }}">Ir atrás</a>
+            </div>
+            </form>
+        </div>
+        <div>
+            <!-- Modal -->
+            <form action="{{ route('personalxvehiculo.temp') }}" method="POST">
+                @csrf
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
@@ -105,31 +134,24 @@
                                     <select class="form-select" aria-label="Default select example" name="vehiculo">
                                         <option selected>Selecione una placa</option>
                                         @foreach ($vehiculo as $vehiculos)
-                                        <option value= "{{ $vehiculos->id }}"> Placa: {{ $vehiculos-> placa}} </option>
+                                            <option value="{{ $vehiculos->id }}"> Placa:
+                                                {{ $vehiculos->placa }} </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="apellido">Cajas</label>
-                                    <input type="text" class="form-control" name="apellido" require maxlength="50">
+                                    <label for="caja">Cajas</label>
+                                    <input type="text" class="form-control" name="caja" require maxlength="50">
                                 </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
-                              <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
                             </div>
-                          </div>
                         </div>
-                      </div>
-
-                    <br>
-                    <br>
-                        <input type="submit" class="btn btn-primary" value="Guardar">
-                        <input type="reset" class="btn btn-dark" value="Cancelar">
-                        <a class="btn btn-danger" href="{{route('personalxvehiculo.index')}}">Ir atrás</a>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>
@@ -151,8 +173,8 @@
     }
 
     $('#myModal').modal({
-  keyboard: false
-})
+        keyboard: false
+    })
 </script>
 
 </html>

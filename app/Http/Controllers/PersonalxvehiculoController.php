@@ -46,7 +46,7 @@ class PersonalxvehiculoController extends Controller
 
         $cantidad = Caja::get();
         $transporte = DB::select('SELECT codigo_transportes.id, codigo_transportes.Codigo, codigo_transportes.Caja, vehiculos.placa as Placa FROM codigo_transportes INNER JOIN vehiculos ON codigo_transportes.Placa = vehiculos.placa WHERE codigo_transportes.id NOT IN (SELECT personalxvehiculos.transportes_Id FROM personalxvehiculos)');
-        return view('personalxvehiculo.create', compact('conductor', 'vendedor', 'auxiliar', 'vehiculo','cantidad', 'transporte'));
+        return view('personalxvehiculo.create', compact('conductor', 'vendedor', 'auxiliar', 'vehiculo', 'cantidad', 'transporte'));
     }
 
     /**
@@ -137,7 +137,7 @@ class PersonalxvehiculoController extends Controller
         $cantidad = Caja::get();
         $vehiculo = Vehiculo::get();
 
-        return view('personalxvehiculo.show', compact('fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId','cantidad','vehiculo'));
+        return view('personalxvehiculo.show', compact('fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'cantidad', 'vehiculo'));
     }
 
     /**
@@ -185,7 +185,7 @@ class PersonalxvehiculoController extends Controller
         $cantidad = Caja::where("cantidad")->get();
         $vehiculo = Vehiculo::where("placa", "=", $personalxvehiculo[0]['placa'])->get();
 
-        return view('personalxvehiculo.edit', compact('id', 'fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'cantidad', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'transporteId','cantidad'));
+        return view('personalxvehiculo.edit', compact('id', 'fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'cantidad', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'transporteId', 'cantidad'));
     }
 
     /**
@@ -268,8 +268,17 @@ class PersonalxvehiculoController extends Controller
         return redirect()->route('personalxvehiculo.index');
 
     }*/
-    public function listvehiculos ()
+    public function listvehiculos()
     {
         $total = Vehiculo::all();
+    }
+    public function temp(Request $resquest)
+    {
+        CodigoTransporte::create([
+            'Codigo' => "Temporal",
+            'Caja' => $resquest->get('caja'),
+            'Placa' => Vehiculo::find($resquest->get('vehiculo'))->placa
+        ]);
+        return redirect()->route('personalxvehiculo.create');
     }
 }
