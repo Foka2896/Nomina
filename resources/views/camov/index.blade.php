@@ -59,13 +59,14 @@
 
         <div class="table-responsive">
             <table class="table" id="TblData">
-                <thead>
+                <thead class="align-center" >
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Codigo</th>
                         <th scope="col">Placa</th>
                         <th scope="col">Cajas</th>
+                        <th scope="col" colspan="2" style="text-align:center">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,6 +77,19 @@
                             <td>{{ $codigoTransportes->Codigo }}</th>
                             <td>{{ $codigoTransportes->Placa }}</th>
                             <td>{{ $codigoTransportes->Caja }}</th>
+                            <td>
+                                <a href="{{route('camov.edit', $codigoTransportes->id) }}"
+                                    class="btn btn-warning btn-sm">Editar</a>
+                            </td>
+                            <td>
+                                <form action="{{ route('CodigoTransporte.destroy', $codigoTransportes->id) }}"
+                                    onclick="return eliminarAlumno('Esta segura de eliminar esta persona')"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

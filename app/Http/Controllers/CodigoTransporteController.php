@@ -18,10 +18,10 @@ class CodigoTransporteController extends Controller
     public function index(Request $request)
     {
         $texto = trim($request->get('texto'));
-        $codigoTransporte = DB::table('codigo_transportes')->select('id','Fecha','Codigo', 'Placa', 'Caja')
+        $codigoTransporte = DB::table('codigo_transportes')->select('id', 'Fecha', 'Codigo', 'Placa', 'Caja')
             ->where('Caja', 'LIKE', '%' . $texto . '%')
             ->orwhere('Fecha', 'LIKE', '%' . $texto . '%')
-            ->orwhere('Placa','LIKE', '%' . $texto . '%')
+            ->orwhere('Placa', 'LIKE', '%' . $texto . '%')
             ->orwhere('Codigo', 'LIKE', '%' . $texto . "%")
             ->orderBy('id', 'asc')
             ->paginate(10);
@@ -66,9 +66,11 @@ class CodigoTransporteController extends Controller
      * @param  \App\Models\CodigoTransporte  $codigoTransporte
      * @return \Illuminate\Http\Response
      */
-    public function edit(CodigoTransporte $codigoTransporte)
+    public function edit($codigo)
     {
-        //
+        $camov = CodigoTransporte::where("id", "=", $codigo)->first();
+
+        return view('camov.edit', compact('camov'));
     }
 
     /**
@@ -78,9 +80,15 @@ class CodigoTransporteController extends Controller
      * @param  \App\Models\CodigoTransporte  $codigoTransporte
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CodigoTransporte $codigoTransporte)
+    public function update(Request $request, $id)
     {
-        //
+        $camov = CodigoTransporte::FindOrFail($id);
+        $camov->codigo = $request->input('codigo');
+        $camov->placa = $request->input('placa');
+        $camov->caja = $request->input('caja');
+        $camov->save();
+
+        return redirect()->route('camov.index');
     }
 
     /**

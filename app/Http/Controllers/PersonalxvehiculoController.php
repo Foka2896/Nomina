@@ -27,8 +27,9 @@ class PersonalxvehiculoController extends Controller
             ->orderBy('id', 'asc');
         $personalxvehiculos = personalxvehiculo::Select('personalxvehiculos.transportes_Id As id', 'personalxvehiculos.fecha_diaria', 'codigo_transportes.Codigo', 'codigo_transportes.Placa', 'codigo_transportes.Caja', 'personalxvehiculos.transportes_Id')
             ->Join('codigo_transportes', 'personalxvehiculos.transportes_Id', '=', 'codigo_transportes.id')
-            ->groupBy('Codigo')
+            ->groupBy('Placa')
             ->paginate(10);
+
         return view('personalxvehiculo.index', compact('texto', 'personalxvehiculos'));
     }
 

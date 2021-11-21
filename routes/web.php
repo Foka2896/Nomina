@@ -38,10 +38,11 @@ Route::resource('camov', App\Http\Controllers\CodigoTransporteController::class)
 
 Route::post('CodigoTransporte/importExcel', [App\Http\Controllers\CodigoTransporteController::class, 'importExcel'])->name('camov.importExcel');
 Route::get('CodigoTransporte/exportExcel', [App\Http\Controllers\CodigoTransporteController::class, 'exportExcel'])->name('camov.exportExcel');
+Route::resource('CodigoTransporte', App\Http\Controllers\CodigoTransporteController::class);
 
 Route::resource('historial', App\Http\Controllers\HistorialController::class);
 
-Route::delete('/personalxvehiculo/','/PersonalxvehiculoController@destroy')->name('destroy'); //para vista de eliminar multiple vehiculos
+//Route::delete('/personalxvehiculo/','/PersonalxvehiculoController@destroy')->name('destroy'); //para vista de eliminar multiple vehiculos
 
 
 //Auth::routes();

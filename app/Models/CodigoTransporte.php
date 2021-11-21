@@ -8,7 +8,8 @@ use Carbon\Carbon;
 
 class CodigoTransporte extends Model
 {
-    use HasFactory;
+
+    protected $fillable = ['Fecha', 'Codigo', 'Placa', 'Caja'];
 
     protected $casts = [
         'created_at' => 'datetime:d/m/Y', // Change your format
@@ -16,5 +17,5 @@ class CodigoTransporte extends Model
     ];
 
     protected $dateFormat = 'Y-m-d';
-    protected $fillable = ['Fecha', 'Codigo', 'Placa', 'Caja'];
+
 }
