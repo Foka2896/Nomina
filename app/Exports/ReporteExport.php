@@ -34,7 +34,9 @@ class ReporteExport implements FromQuery, WithHeadings
     {
         return CodigoTransporte::query()->SELECT('personalxvehiculos.fecha_diaria', DB::raw("concat(personals.Nombre, ' ', personals.Apellido) AS Tripulacion"), 'personals.Cargo', 'codigo_transportes.Codigo', 'codigo_transportes.Placa','codigo_transportes.Caja')
             ->JOIN('personalxvehiculos', 'personalxvehiculos.transportes_Id', '=', 'codigo_transportes.id')
-            ->JOIN('personals', 'personalxvehiculos.personal_Id', '=', 'personals.id');
+            ->JOIN('personals', 'personalxvehiculos.personal_Id', '=', 'personals.id')
+            ->WHERE('personalxvehiculos.fecha_diaria', '>=', $this->inicial)
+            ->WHERE('personalxvehiculos.fecha_diaria', '<=', $this->final);
 
     }
 }
