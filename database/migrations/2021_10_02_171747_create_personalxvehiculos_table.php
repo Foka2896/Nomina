@@ -13,11 +13,12 @@ class CreatePersonalxvehiculosTable extends Migration
      */
     public function up()
     {
-        Schema::create('personalxvehiculos', function (Blueprint $table) {            
+        Schema::create('personalxvehiculos', function (Blueprint $table) {
             $table->id();
             $table->string('personal_Id');
             $table->string('transportes_Id');
             $table->date('fecha_diaria');
+            $table->string('cd');
             $table->timestamps();
         });
     }

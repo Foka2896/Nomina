@@ -29,8 +29,9 @@ class PersonalxvehiculoController extends Controller
             ->Join('codigo_transportes', 'personalxvehiculos.transportes_Id', '=', 'codigo_transportes.id')
             ->groupBy('Placa')
             ->paginate(10);
+            $total=$personalxvehiculos->total();
 
-        return view('personalxvehiculo.index', compact('texto', 'personalxvehiculos'));
+        return view('personalxvehiculo.index', compact('texto', 'personalxvehiculos','total'));
     }
 
     /**
@@ -184,6 +185,7 @@ class PersonalxvehiculoController extends Controller
         $vendedor = Personal::where("Cargo", "Vendedor")->get();
         $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
         $cantidad = Caja::where("cantidad")->get();
+        $cd = Caja::where("cantidad")->get();
         $vehiculo = Vehiculo::where("placa", "=", $personalxvehiculo[0]['placa'])->get();
 
         return view('personalxvehiculo.edit', compact('id', 'fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'cantidad', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'transporteId', 'cantidad'));

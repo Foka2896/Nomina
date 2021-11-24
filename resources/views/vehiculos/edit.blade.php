@@ -22,11 +22,15 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="nombre">Placa</label>
-                        <input type="text" class="form-control" name="Placa" required maxlength="30" value="{{old('Placa',$placa->Placa)}}">
+                        <input type="text" class="form-control" placeholder="placa" name="Placa" required maxlength="30" value="{{old('Placa',$vehiculo->Placa)}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="cd">CD</label>
+                        <input type="text" class="form-control" placeholder="cd" name="cd" required maxlength="30" value="{{old('cd',$vehiculo->cd)}}">
                     </div>
                         <input type="submit" class="btn btn-primary" value="Guardar">
                         <input type="reset" class="btn btn-dark" value="Cancelar">
-                        <a class="btn btn-danger" href="{{route('vehiculo.index)}}">Ir atrás</a>
+                        <a class="btn btn-danger" href="{{route('vehiculo.index')}}">Ir atrás</a>
                     </div>
                 </form>
             </div>

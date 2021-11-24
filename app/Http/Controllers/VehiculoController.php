@@ -69,7 +69,7 @@ class VehiculoController extends Controller
     public function edit($id)
     {
         $vehiculo=Vehiculo::findOrFail($id);
-        return view('vehiculo.edit', compact('vehiculo'));
+        return view('vehiculos.edit', compact('vehiculo'));
     }
 
     /**
@@ -79,9 +79,12 @@ class VehiculoController extends Controller
      * @param  \App\Models\Vehiculo  $vehiculo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vehiculo $vehiculo)
+    public function update(Request $request, $id)
     {
-        //
+        $vehiculo=Vehiculo::findOrFail($id);
+        $vehiculo->placa = $request->get('Placa');
+        $vehiculo->save();
+        return redirect()->route('vehiculo.index');
     }
 
     /**

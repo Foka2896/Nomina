@@ -12,7 +12,7 @@
     <br>
     <br>
     <br>
-    <h4> Creación de Vehiculo</h4>   
+    <h4> Creación de Vehiculo</h4>
      <div class="row">
     <div class="col-xl-12">
         <form action="{{route('vehiculo.store')}}" method="POST">
@@ -20,6 +20,10 @@
         <div class="form-group">
                 <label for="placa">Placa</label>
                 <input type="text" class="form-control" name="Placa" required maxlength="30">
+            </div>
+            <div class="form-group">
+                <label for="cd">CD</label>
+                <input type="text" class="form-control" name="cd" required maxlength="30">
             </div>
             <div class="form-group my-2">
                 <input type="submit" class="btn btn-primary" value="Guardar">

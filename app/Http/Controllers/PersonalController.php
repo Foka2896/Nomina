@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class PersonalController extends Controller
 {
     /**
-     * Display a listing of 
+     * Display a listing of
      * the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,12 +17,27 @@ class PersonalController extends Controller
     public function index(Request $request)
     {
         $texto = trim($request->get('texto'));
-        $personales = DB::table('personals')->select('id', 'Nombre', 'Apellido', 'Cargo')
+        $personales = DB::table('personals')->select('id', 'Nombre', 'Apellido', 'Cargo','cd')
             ->where('Cargo', 'LIKE', '%' . $texto . '%')
             ->orwhere('Nombre', 'LIKE', '%' . $texto . '%')
+            ->orwhere('Apellido', 'LIKE', '%' . $texto . '%')
+            ->orwhere('cd', 'LIKE', '%' . $texto . '%')
             ->orderBy('id', 'asc')
             ->paginate(10);
-        return view('personal.index', compact('personales', 'texto'));
+        //$totalc=$personales->total();
+        $totalc = DB::table('personals')->select('id', 'Nombre', 'Apellido', 'Cargo','cd')
+            ->where('Cargo', '=', 'Conductor')
+            ->orderBy('id', 'asc')
+            ->count('id');
+        $totalv = DB::table('personals')->select('id', 'Nombre', 'Apellido', 'Cargo','cd')
+            ->where('Cargo', '=', 'Vendedor')
+            ->orderBy('id', 'asc')
+            ->count('id');
+        $totala = DB::table('personals')->select('id', 'Nombre', 'Apellido', 'Cargo','cd')
+            ->where('Cargo', '=', 'Auxiliar')
+            ->orderBy('id', 'asc')
+            ->count('id');
+        return view('personal.index', compact('personales', 'texto', 'totalc', 'totalv','totala'));
     }
 
     /**
@@ -43,13 +58,16 @@ class PersonalController extends Controller
      */
     public function store(Request $request, Personal $id)
     {
-        
+
         $personal = new personal;
         $personal->nombre = $request->input('nombre');
         $personal->apellido = $request->input('apellido');
         $personal->cargo = $request->input('cargo');
+        $personal->cd = $request->input('cd');
         $personal->save();
-        
+
+        //$totalvendedor=$cargo->vendedor->total();
+        //$totalauxiliar=$cargo->auxiliar->total();
         return redirect()->route('personal.index');
     }
 
@@ -72,7 +90,7 @@ class PersonalController extends Controller
      */
     public function edit($id)
     {
-        $personal=Personal::findOrFail($id);
+        $personal = Personal::findOrFail($id);
         return view('personal.edit', compact('personal'));
     }
 
@@ -85,13 +103,14 @@ class PersonalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $personal = Personal::FindOrFail($id);
         $personal->nombre = $request->input('Nombre');
         $personal->apellido = $request->input('apellido');
         $personal->cargo = $request->input('cargo');
+        $personal->cd = $request->input('cd');
         $personal->save();
-        
+
         return redirect()->route('personal.index');
     }
 
@@ -103,7 +122,7 @@ class PersonalController extends Controller
      */
     public function destroy($id)
     {
-        $personal=Personal::FindOrFail($id);
+        $personal = Personal::FindOrFail($id);
         $personal->delete();
         return redirect()->route('personal.index');
     }

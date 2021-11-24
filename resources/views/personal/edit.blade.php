@@ -32,6 +32,10 @@
                         <label for="cargo">Cargo</label>
                         <input type="text" class="form-control" name="cargo" required maxlength="30" value="{{$personal->Cargo}}">
                     </div>
+                    <div class="form-group">
+                        <label for="cargo">CD</label>
+                        <input type="text" class="form-control" name="cd" required maxlength="30" value="{{$personal->cd}}">
+                    </div>
                     <div class="form-group my-2">
                         <input type="submit" class="btn btn-primary" value="Guardar">
                         <input type="reset" class="btn btn-dark" value="Cancelar">

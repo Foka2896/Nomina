@@ -51,6 +51,7 @@
                          <tr>
                             <th>Id</th>
                             <th>Placa</th>
+                            <th>CD</th>
                             <th>Opciones</th>
                          </tr>
                     </thead>
@@ -71,6 +72,7 @@
                             </td>
                             <!--<td>{{$vehiculo-> id}}</td>-->
                             <td>{{$vehiculo-> placa}}</td>
+                            <td>{{$vehiculo-> cd}}</td>
                             <td><a href="{{route('vehiculo.edit',$vehiculo->id)}}" class="btn btn-warning btn-sm">Editar</a>
                             <form action="{{route('vehiculo.destroy', $vehiculo->id)}}" onclick="return eliminarAlumno('Esta segura de eliminar este vehiculo')" method="POST">
                             @csrf

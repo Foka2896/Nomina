@@ -20,6 +20,14 @@
         <h4>
             Nomina
         </h4>
+        <h3 id="total">
+            <span>
+                Total personal:
+            </span>
+            <strong>
+                ({{$total}})
+            </strong>
+        </h3>
         <div class="row">
             <div class="col-xl-12">
                 <form action="{{route('personalxvehiculo.index')}}" method="get">

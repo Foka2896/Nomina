@@ -20,6 +20,7 @@ class CreatePersonalsTable extends Migration
             $table->string("Apellido");
             $table->string("Seg_Apellido")->nullable();
             $table->string("Cargo");
+            $table->string("cd");
             $table->timestamps();
         });
 

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Vehiculo extends Model
 {
     protected $fillable = [
-        'placa'
+        'placa',
+        'cd'
+
     ];
 
     public function personal(){

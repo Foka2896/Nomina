@@ -9,7 +9,8 @@ class Personal extends Model
     protected $fillable = [
         'Nombre',
         'Apellido',
-        'Cargo'
+        'Cargo',
+        'cd'
     ];
 
     public function vehiculo(){

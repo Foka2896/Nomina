@@ -18,8 +18,8 @@
     <script src="js/scripts.js"></script>
 </head>
 
-<body>
-    <!-- Responsive navbar-->
+<body background="Logo_Reina_Sierra - copia.png" background-position="center">
+    <!-- Responsive navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand">Planilla Nomina</a>
@@ -42,7 +42,7 @@
                 <a href="{{route('personal.index')}}" class="btn btn-secondary"></button>Registro Personas</a>
                 <a href="{{route('vehiculo.index')}}" class="btn btn-dark"></button>Registro Vehiculos</a>
                 <a href="{{route('personalxvehiculo.index')}}" class="btn btn-success"></button>Registro PersonalxVehivulo</a>
-                <a href="{{route('camov.index')}}" class="btn btn-link"></button>Registro Camov</a>
+                <a href="{{route('camov.index')}}" class="btn btn-outline-info"></button>Registro Camov</a>
                 <a href="{{route('historial.create')}}" class="btn btn-warning">Historial Quincena</a>
             </div>
         </div>
