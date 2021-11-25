@@ -86,6 +86,7 @@
                                     {{ $auxiliars->Apellido }}</option>
                             @endforeach
                         </select>
+
                     </div>
                     <button type="button" class="btn btn-primary" onclick="crear(2,2)">Crear</button>
                     <button type="button" class="btn btn-danger" onclick="eliminar(2,2)">Eliminar</button>
@@ -101,6 +102,7 @@
                     </div>
                     <br>
 
+
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
@@ -109,6 +111,7 @@
 
                     <br>
                     <br>
+                    <a class="btn btn-outline-secondary" href="{{ route('personal.create') }}">Creación de personal</a>
                     <input type="submit" class="btn btn-primary" value="Guardar">
                     <input type="reset" class="btn btn-dark" value="Cancelar">
                     <a class="btn btn-danger" href="{{ route('personalxvehiculo.index') }}">Ir atrás</a>
