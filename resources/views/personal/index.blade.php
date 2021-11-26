@@ -31,7 +31,7 @@
                 ({{ $totalv }})
             </strong>
             <span>
-                Total conductores:
+                Total auxiliares:
             </span>
             <strong>
                 ({{ $totala }})

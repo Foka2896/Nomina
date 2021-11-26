@@ -26,91 +26,20 @@
                         <input type="date" class="form-control" name="fecha" value="{{ $fecha }}" required
                             maxlength="30">
                     </div>
-                    <div class="form-group">
-                        <label>Conductor</label>
-                        <select class="form-select" aria-label="Default select example" name="nombreconductor">
-                            @foreach ($conductor as $conductors)
-                                <option @if ($conductorId == $conductors->id) selected @endif value="{{ $conductors->id }}">
-                                    {{ $conductors->Nombre }}
-                                    {{ $conductors->Apellido }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group" id="conductor" style="display:none">
-                        <label>Conductor 2</label>
-                        <select class="form-select" aria-label="Default select example" name="nombreconductor2"
-                            id="nombreconductor2">
-                            <option selected>Selecione un conductor</option>
-                            @foreach ($conductor as $conductors)
-                                <option value="{{ $conductors->id }}">{{ $conductors->Nombre }}
-                                    {{ $conductors->Apellido }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @if ($conductorId2 != 0)
-                        <div class="form-group" id="conductor">
-                            <label>Conductor 2</label>
-                            <select class="form-select" aria-label="Default select example" name="nombreconductor2"
-                                id="nombreconductor2">
-                                @foreach ($conductor as $conductors)
-                                    <option @if ($conductorId2 == $conductors->id) selected  @endif value="{{ $conductors->id }}">
-                                        {{ $conductors->Nombre }}
-                                        {{ $conductors->Apellido }}</option>
+                    @foreach ($personalitem as $item)
+                        <div class="form-group">
+                            <label>Personal $item.i</label>
+                            <select class="form-select" aria-label="Default select example" name="nomper{{ $item.i}}">
+                                @foreach ($personal as $personals)
+                                    <option @if ($item == $personals->id) selected @endif value="{{ $personals->id }}">
+                                        {{ $personals->Nombre }}
+                                        {{ $personals->Apellido }}</option>
                                 @endforeach
                             </select>
                         </div>
-                    @else
-                        <button type="button" class="btn btn-primary" onclick="crear(1,1)">Crear</button>
-                        <button type="button" class="btn btn-danger" onclick="eliminar(1,1)">Eliminar</button>
-                    @endif
-                    <div class="form-group">
-                        <label>Vendedor</label>
-                        <select class="form-select" aria-label="Default select example" name="nombrevendedor">
-                            @foreach ($vendedor as $vendedors)
-                                <option @if ($vendedorId == $vendedors->id) seleted  @endif value="{{ $vendedors->id }}">
-                                    {{ $vendedors->Nombre }}
-                                    {{ $vendedors->Apellido }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Auxiliar</label>
-                        <select class="form-select" aria-label="Default select example" name="nombreauxiliar">
-                            @foreach ($auxiliar as $auxiliars)
-                                <option @if ($auxiliarId == $auxiliars->id) selected  @endif value="{{ $auxiliars->id }}">
-                                    {{ $auxiliars->Nombre }}
-                                    {{ $auxiliars->Apellido }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group" id="auxiliar" style="display: none;">
-                        <label>Auxiliar 2</label>
-                        <select class="form-select" aria-label="Default select example" name="nombreauxiliar2"
-                            id="nombreauxiliar2">
-                            <option selected>Selecione un auxiliar</option>
-                            @foreach ($auxiliar as $auxiliars)
-                                <option value="{{ $auxiliars->id }}">{{ $auxiliars->Nombre }}
-                                    {{ $auxiliars->Apellido }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @if ($auxiliarId2 != 0)
-                        <div class="form-group" id="auxiliar">
-                            <label>Auxiliar 2</label>
-                            <select class="form-select" aria-label="Default select example" name="nombreauxiliar2"
-                                id="nombreauxiliar2">
-                                @foreach ($auxiliar as $auxiliars)
-                                    <option @if ($auxiliarId2 == $auxiliars->id) selected  @endif value="{{ $auxiliars->id }}">
-                                        {{ $auxiliars->Nombre }}
-                                        {{ $auxiliars->Apellido }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    @else
-                        <button type="button" class="btn btn-primary" onclick="crear(2,2)">Crear</button>
-                        <button type="button" class="btn btn-danger" onclick="eliminar(2,2)">Eliminar</button>
-                    @endif
+
+                    @endforeach
+
                     <div class="form-group">
                         <label for="placa">Vehiculo</label>
                         <select class="form-select" aria-label="Default select example" name="vehiculo">
