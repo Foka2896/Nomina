@@ -128,13 +128,14 @@ class PersonalxvehiculoController extends Controller
             $item = Personal::where('id', '=', $personal['personal_Id'])->get();
             if ($item->count() == 1) {
                 array_push($personalitem, $item[0]->id);
+            }else{
+                array_push($personalitem, 0);
             }
         }
         //dd($personalitem);
-        $transporte = CodigoTransporte::find($personalxvehiculo[0]->transportes_Id);
-        $personal = Personal::all();
-
-        return view('personalxvehiculo.edit', compact('fecha', 'transporteId', 'personalitem', 'transporte', 'personal'));
+        $transporte = CodigoTransporte::all();
+        $personal = Personal::all();        
+        return view('personalxvehiculo.show', compact('fecha', 'transporteId', 'personalitem', 'transporte', 'personal'));
     }
 
     /**
@@ -147,43 +148,23 @@ class PersonalxvehiculoController extends Controller
     {
         $personalxvehiculo = personalxvehiculo::where('transportes_Id', '=', $id)->get();
         //Trae las personas que estan relacionadas al codigo transporte en personalxvehiculo para luego mostrar en la vista la informacion
-        $conductorId = 0;
-        $conductorId2 = 0;
-        $auxiliarId = 0;
-        $auxiliarId2 = 0;
-        $vendedorId = 0;
-        $transporteId = CodigoTransporte::Select('id')->where('id', '=', $personalxvehiculo[0]['transportes_Id'])->first();
-        $transporteId = $transporteId->id;
-        $fecha = $personalxvehiculo[0]["fecha_diaria"];
+        $fecha = $personalxvehiculo[0]->fecha_diaria;
+        $transporteId = $personalxvehiculo[0]->transportes_Id;
+        $personalitem = array();
+
         foreach ($personalxvehiculo as $personal) {
-            $conductor = Personal::where('id', '=', $personal['personal_Id'])->where('Cargo', '=', 'Conductor')->get();
-            $auxiliar = Personal::where('id', '=', $personal['personal_Id'])->where('Cargo', '=', 'Auxiliar')->get();
-            $vendedor = Personal::where('id', '=', $personal['personal_Id'])->where('Cargo', '=', 'Vendedor')->get();
-            if ($conductor->count() == 1) {
-                if ($conductorId == 0) {
-                    $conductorId = $conductor[0]->id;
-                } else {
-                    $conductorId2 = $conductor[0]->id;
-                }
-            } else if ($auxiliar->count() == 1) {
-                if ($auxiliarId == 0) {
-                    $auxiliarId = $auxiliar[0]->id;
-                } else {
-                    $auxiliarId2 = $auxiliar[0]->id;
-                }
-            } else if ($vendedor->count() == 1) {
-                $vendedorId = $vendedor[0]->{'id'};
+            $item = Personal::where('id', '=', $personal['personal_Id'])->get();
+            if ($item->count() == 1) {
+                array_push($personalitem, $item[0]->id);
+            }else{
+                array_push($personalitem, 0);
             }
         }
-        $transporte = DB::select('SELECT codigo_transportes.id, codigo_transportes.Codigo, codigo_transportes.Caja, vehiculos.placa as Placa FROM codigo_transportes INNER JOIN vehiculos ON codigo_transportes.Placa = vehiculos.placa WHERE codigo_transportes.id NOT IN (SELECT personalxvehiculos.transportes_Id FROM personalxvehiculos where codigo_transportes.id <> ?)', [$id]);
-        $conductor = Personal::where("Cargo", "Conductor")->get();
-        $vendedor = Personal::where("Cargo", "Vendedor")->get();
-        $auxiliar = Personal::where("Cargo", "Auxiliar")->get();
-        $cantidad = Caja::where("cantidad")->get();
-        $cd = Caja::where("cantidad")->get();
-        $vehiculo = Vehiculo::where("placa", "=", $personalxvehiculo[0]['placa'])->get();
 
-        return view('personalxvehiculo.edit', compact('id', 'fecha', 'conductor', 'vendedor', 'auxiliar', 'transporte', 'cantidad', 'conductorId', 'conductorId2', 'auxiliarId', 'auxiliarId2', 'vendedorId', 'transporteId', 'cantidad'));
+        $transporte = CodigoTransporte::all();
+        $personal = Personal::all();
+
+        return view('personalxvehiculo.edit', compact('fecha', 'transporteId', 'personalitem', 'transporte', 'personal', 'id'));
     }
 
     /**
@@ -196,53 +177,40 @@ class PersonalxvehiculoController extends Controller
     public function update(Request $request,  $id)
     {
         $personalxvehiculo = personalxvehiculo::where('transportes_Id', '=', $id)->get();
-        $conductorId = $request->get('nombreconductor') ?? 0;
-        $conductorId2 = $request->get('nombreconductor2') ?? 0;
-        $vendedorId = $request->get('nombrevendedor') ?? 0;
-        $auxiliarId = $request->get('nombreauxiliar') ?? 0;
-        $auxiliarId2 = $request->get('nombreauxiliar2') ?? 0;
-        $transporte = $request->get('vehiculo') ?? 0;
-        $caja = $request->get('cantidad') ?? 0;
-        $vehiculo = $request->get('vehiculo') ?? 0;
-        $fecha = $request->get('fecha');
         foreach ($personalxvehiculo as $personal) {
-            if ($conductorId > 0) {
+            if ($request["nomper1"] >= 0) {
                 $personal->update([
-                    'personal_Id' => $conductorId,
-                    'transportes_Id' => $transporte,
-                    'fecha_diaria' => $fecha
+                    'personal_Id' => $request["nomper1"],
+                    'transportes_Id' => $request["vehiculo"],
+                    'fecha_diaria' => $request["fecha"]
                 ]);
-                $conductorId = 0;
-            } else if ($conductorId2 > 0) {
+            } else if ($request["nomper2"] > 0) {
                 $personal->update([
-                    'personal_Id' => $conductorId2,
-                    'transportes_Id' => $transporte,
-                    'fecha_diaria' => $fecha
+                    'personal_Id' => $request["nomper2"],
+                    'transportes_Id' => $request["vehiculo"],
+                    'fecha_diaria' => $request["fecha"]
                 ]);
-                $conductorId2 = 0;
-            } else if ($vendedorId > 0) {
+            } else if ($request["nomper3"] > 0) {
                 $personal->update([
-                    'personal_Id' => $vendedorId,
-                    'transportes_Id' => $transporte,
-                    'fecha_diaria' => $fecha
+                    'personal_Id' => $request["nomper3"],
+                    'transportes_Id' => $request["vehiculo"],
+                    'fecha_diaria' => $request["fecha"]
                 ]);
-                $vendedorId = 0;
-            } else if ($auxiliarId > 0) {
+            } else if ($request["nomper4"] > 0) {
                 $personal->update([
-                    'personal_Id' => $auxiliarId,
-                    'transportes_Id' => $transporte,
-                    'fecha_diaria' => $fecha
+                    'personal_Id' => $request["nomper4"],
+                    'transportes_Id' => $request["vehiculo"],
+                    'fecha_diaria' => $request["fecha"]
                 ]);
-                $auxiliarId = 0;
-            } else if ($auxiliarId2 > 0) {
+            } else if ($request["nomper5"] > 0) {
                 $personal->update([
-                    'personal_Id' => $auxiliarId2,
-                    'transportes_Id' => $transporte,
-                    'fecha_diaria' => $fecha
+                    'personal_Id' => $request["nomper6"],
+                    'transportes_Id' => $request["vehiculo"],
+                    'fecha_diaria' => $request["fecha"]
                 ]);
-                $auxiliarId2 = 0;
             }
         }
+
         return redirect()->route('personalxvehiculo.index');
     }
 
@@ -270,6 +238,7 @@ class PersonalxvehiculoController extends Controller
     {
         $total = Vehiculo::all();
     }
+
     public function temp(Request $resquest)
     {
         CodigoTransporte::create([

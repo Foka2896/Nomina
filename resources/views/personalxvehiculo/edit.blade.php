@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Editar Registro</title>
 </head>
 
@@ -18,38 +17,45 @@
         <h4> Edicion Personal Por Vehiculo Vehiculo</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{ route('personalxvehiculo.update', $id) }}" method="POST">
+                <form action="{{ route('personalxvehiculo.update', $id ) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label for="date">Fecha</label>
-                        <input type="date" class="form-control" name="fecha" value="{{ $fecha }}" required
-                            maxlength="30">
+                        <input type="date" class="form-control" name="fecha" value="{{ $fecha }}" required maxlength="30">
                     </div>
-                    @foreach ($personalitem as $item)
-                        <div class="form-group">
-                            <label>Personal $item.i</label>
-                            <select class="form-select" aria-label="Default select example" name="nomper{{ $item.i}}">
-                                @foreach ($personal as $personals)
-                                    <option @if ($item == $personals->id) selected @endif value="{{ $personals->id }}">
-                                        {{ $personals->Nombre }}
-                                        {{ $personals->Apellido }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+
+                    @foreach ($personalitem as $key=>$value)
+
+                    <div class="form-group">
+                        <label>Personal {{ $key+1 }}</label>
+                        <select class="form-select" aria-label="Default select example" name="nomper{{ $key+1 }}">
+                            <option value="0">Seleccione un personal</option>
+                            @foreach ($personal as $personals)
+                            <option @if ($value==$personals->id) selected @endif value="{{ $personals->id }}">
+                                {{ $personals->Nombre }}
+                                {{ $personals->Apellido }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     @endforeach
 
                     <div class="form-group">
                         <label for="placa">Vehiculo</label>
                         <select class="form-select" aria-label="Default select example" name="vehiculo">
+                        <option value="0">Seleccione un Vehiculo</option>
                             @foreach ($transporte as $transportes)
-                                <option @if ($transporteId == $transportes->id) selected @endif value="{{ $transportes->id }}">Transporte:
-                                    {{ $transportes->Codigo }}, Placa: {{ $transportes->Placa }},Caja:
-                                    {{ $transportes->Caja }}</option>
+                            <option @if ($transporteId==$transportes->id) selected @endif value="{{ $transportes->id }}">
+                                {{ $transportes->Codigo }}
+                                {{ $transportes->Placa }}
+                                {{ $transportes->Caja }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
+
                     <div class="form-group my-2">
                         <input type="submit" class="btn btn-primary" value="Editar">
                         <input type="reset" class="btn btn-dark" value="Cancelar">

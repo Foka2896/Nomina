@@ -41,7 +41,7 @@
             <div class="d-grid gap-2">
                 <a href="{{route('personal.index')}}" class="btn btn-secondary"></button>Registro Personas</a>
                 <a href="{{route('vehiculo.index')}}" class="btn btn-dark"></button>Registro Vehiculos</a>
-                <a href="{{route('personalxvehiculo.index')}}" class="btn btn-success"></button>Registro PersonalxVehivulo</a>
+                <a href="{{route('personalxvehiculo.index')}}" class="btn btn-success"></button>Registro Personal Por Vehiculos</a>
                 <a href="{{route('caja.index')}}" class="btn btn-link"></button>Registro Camov</a>
                 <a href="{{route('historial.index')}}" class="btn btn-warning">Historial Quincena</a>
             </div>
